@@ -1,0 +1,40 @@
+﻿@model List<eMusicStudio.Web.ViewModels.Klijent.ListOfAppointmentsViewModel>
+@{
+    ViewData["Title"] = "Lista termina";
+    Layout = "~/Views/Shared/_KlijentLayout.cshtml";
+    var termin = (string)TempData["termin"];
+}
+
+<div class="content-wrapper">
+    <div class="content-header">
+        <div class="container-fluid">
+            @if (termin != null)
+            {
+                <div class="alert alert-success" id="poruka" role="alert">
+                    @termin
+                </div>
+            }
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Datum termina</th>
+                        <th>Pocetak</th>
+                        <th>Kraj</th>
+                        <th>Akcija</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <th>@item.Datum.ToShortDateString()</th>
+                            <th>@item.VrijemeOd.ToString(@"hh\:mm")</th>
+                            <th>@item.VrijemeDo.ToString(@"hh\:mm")</th>
+                            <th><a asp-action="RezervisiTermin" asp-route-id="@item.TerminId" class="btn btn-primary">Rezervisi</a></th>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    </div>

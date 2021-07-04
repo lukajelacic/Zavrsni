@@ -1,0 +1,80 @@
+﻿@model eMusicStudio.Web.ViewModels.MuzickaOprema.MusicInstrumentsViewModel
+@{
+    ViewData["Title"] = "Lista instrumenata";
+    if (Model.isAdmin)
+    {
+        Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_KlijentLayout.cshtml";
+
+    }
+    var porukaNaStanju = (string)TempData["poruka-sucess"];
+    var porukaDodavanje = (string)TempData["Success"];
+}
+<div class="content-wrapper">
+    <div class="content-header">
+        <div class="container-fluid">
+            @if (porukaDodavanje != null)
+            {
+                <div class="alert alert-success" id="poruka" role="alert">
+                    @porukaDodavanje
+                </div>
+            }
+            @if (porukaNaStanju != null)
+            {
+                <div class="alert alert-success" id="poruka" role="alert">
+                    @porukaNaStanju
+                </div>
+            }
+            <form asp-action="ListaInstrumenata" method="post">
+                <div class="form-group row">
+                    <select asp-for="@Model.VrstaId" asp-items="@Model.Vrste" class="form-control col-3"></select>
+                    <button type="submit" class="btn btn-primary col-2" style="margin-left:5px">Filtriraj</button>
+                  
+                </div>
+            </form>
+            <br />
+            <div class="card-body p-0">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Slika</th>
+                            <th>Naziv</th>
+                            <th>Na stanju</th>
+                            <th>Cijena</th>
+                            <th>Akcija</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.muzickaOprema)
+                        {
+                            <tr>
+                                <td><img src="~/images/@item.Slika" style="height:200px;display:block;width:200px" class="accImage imageDiv " /></td>
+                                <td>@item.Naziv</td>
+                                <td>@item.NaStanju</td>
+                                <td>@item.Cijena KM</td>
+                                <td>
+                                    @if (Model.isAdmin)
+                                    {
+                                        <a asp-action="PovecajBrojNaStanju" asp-route-id="@item.MuzickaOpremaId" class="btn btn-primary">Povecaj broj na stanju</a>
+                                    }
+                                    else
+                                    {
+                                        <a asp-action="RezervisiMuzickiInstrument" asp-controller="Rezervacije" asp-route-id="@item.MuzickaOpremaId" class="btn btn-primary">Rezervisi instrument</a>
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                @if (Model.isAdmin)
+                {
+                    <a asp-action="Instrumenti" asp-controller="Report" class="btn btn-primary float-right" >Izvještaj</a>
+
+                }
+            </div>
+        </div>
+    </div>
+    </div>

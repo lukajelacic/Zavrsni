@@ -1,0 +1,87 @@
+﻿@model eMusicStudio.Web.ViewModels.Klijent.ClientDetailViewModel
+@{
+    ViewData["Title"] = "Detalji klijenta";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    var ban = (string)TempData["klijentBanovan"];
+    var unban = (string)TempData["klijentUnbanovan"];
+
+
+}
+<div class="content-wrapper">
+    <div class="content-header">
+        <div class="container-fluid">
+            @if (ban != null)
+            {
+                <div class="alert alert-success" id="poruka" role="alert">
+                    @ban
+                </div>
+            }
+            @if (unban != null)
+            {
+                <div class="alert alert-success" id="poruka" role="alert">
+                    @unban
+                </div>
+            }
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card card-primary">
+                        <div class="card-body box-profile">
+                            <div class="text-center">
+                                <img src="~/images/@Model.Slika" class="profile-user-img img-fluid img-circle" />
+                            </div>
+                            <br />
+                            <br />
+                            <ul class="list-group list-group-unbordered mb-3">
+                                <li class="list-group-item">
+                                    <b>Ime i prezime</b> <a class="float-right">@Model.Ime @Model.Prezime</a>
+                                </li>
+                                <li class="list-group-item">
+                                    <b>Korisnicko ime</b> <a class="float-right">@Model.KorisnickoIme</a>
+                                </li>
+
+                            </ul>
+                            @if (Model.Ban)
+                            {
+                                <a asp-action="UnbanKlijenta" asp-route-id="@Model.KlijentId" class="btn btn-primary btn-block">Unban klijenta</a>
+
+                            }
+                            else
+                            {
+                                <a asp-action="BanKlijenta" asp-route-id="@Model.KlijentId" class="btn btn-primary btn-block">Ban klijenta</a>
+
+                            }
+                            <br />
+                            <a asp-action="ListaRezervacija" asp-controller="Rezervacije" asp-route-id="@Model.KlijentId" class="btn btn-primary btn-block">Rezervacije klijenta</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <h3 class="card-title">Osnovne informacije</h3>
+                        </div>
+                        <div class="card-body">
+                            <ul class="list-group list-group-unbordered mb-3">
+                                <li class="list-group-item">
+                                    <b>Email</b> <a class="float-right">@Model.Email</a>
+                                </li>
+                                <li class="list-group-item">
+                                    <b>Telefon</b> <a class="float-right">@Model.Telefon</a>
+                                </li>
+                                <li class="list-group-item">
+                                    <b>Grad</b> <a class="float-right">@Model.Grad</a>
+                                </li>
+                                <li class="list-group-item">
+                                    <b>Broj rezervacija</b> <a class="float-right">@Model.BrojRezervacija</a>
+                                </li>
+                                <li class="list-group-item">
+                                    <b>Broj termina</b> <a class="float-right">@Model.BrojTermina</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>

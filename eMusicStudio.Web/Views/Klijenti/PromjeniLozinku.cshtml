@@ -1,0 +1,34 @@
+﻿@model eMusicStudio.Web.ViewModels.Klijent.ClientChangePasswordViewModel
+@{
+    ViewData["Title"] = "Promjeni lozinku";
+    Layout = "~/Views/Shared/_KlijentLayout.cshtml";
+
+}
+
+<div class="content-wrapper">
+    <div class="content-header">
+        <div class="container-fluid">
+            <form asp-action="PromjeniLozinku" method="post">
+                <div class="card-body">
+                    <div class="form-group">
+                        <label asp-for="@Model.TrenutnaLozinka"></label>
+                        <input asp-for="@Model.TrenutnaLozinka" type="password" class="form-control" />
+                        <span asp-validation-for="@Model.TrenutnaLozinka" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="@Model.NovaLozinka"></label>
+                        <input asp-for="@Model.NovaLozinka" type="password" class="form-control" />
+                        <span asp-validation-for="@Model.NovaLozinka" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="@Model.PotvrdaLozinke"></label>
+                        <input asp-for="@Model.PotvrdaLozinke" type="password" class="form-control" />
+                        <span asp-validation-for="@Model.PotvrdaLozinke" class="text-danger"></span>
+                    </div>
+                    <a asp-action="ProfilKlijenta" class="btn btn-default">Nazad na profil</a>
+                    <button type="submit" class="btn btn-primary float-right">Promjeni lozinku</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    </div>

@@ -1,0 +1,56 @@
+﻿@model eMusicStudio.Web.ViewModels.Rezervacije.DetaljiRezervacijeViewModel
+@{
+    ViewData["Title"] = "Detalji rezervacije";
+    if (GlobalUser.prijavljeniKorisnik != null)
+    {
+        Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_KlijentLayout.cshtml";
+
+    }
+    var rez = (string)TempData["rez"];
+}
+<div class="content-wrapper">
+    <div class="content-header">
+        <div class="container-fluid">
+            <h1>Broj rezervacije:   @Model.BrojRezervacije</h1>
+            <h3>Cijena rezervacije:   @Model.Cijena KM</h3>
+            @if (rez != null)
+            {
+                <div class="alert alert-success" id="poruka">
+                    @rez
+                </div>
+            }
+            <div class="card-body p-0">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Muzički instrument</th>
+                            <th>Količina</th>
+                            <th>Cijena</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in @Model.RezervacijeStavke)
+                        {
+                            <tr>
+                                <td>@item.MuzickaOprema</td>
+                                <td>@item.Kolicina</td>
+                                <td>@item.Cijena KM</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <br />
+            @if (Model.DatumRezervacije.Date > DateTime.Now.Date && GlobalClient.prijavljeniKlijent != null && Model.Otkazana==false)
+            {
+                <a asp-action="OtkaziRezervaciju" asp-route-id="@Model.RezervacijaId" class="btn btn-primary float-right">Otkazi rezervaciju</a>
+            }
+        </div>
+    </div>
+</div>
+   
+   

@@ -1,0 +1,48 @@
+﻿@model List<eMusicStudio.Web.ViewModels.Admin.UserListViewModel>
+@{
+    ViewData["Title"] = "Lista radnika";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    var korisnik = (string)TempData["korisnik"];
+}
+<div class="content-wrapper">
+    <div class="content-header">
+        <div class="container-fluid">
+            @if (korisnik != null)
+            {
+                <div class="alert alert-success" id="poruka" role="alert">
+                    @korisnik
+                </div>
+            }
+            <form asp-action="ListaKorisnika" method="post">
+                <div class="form-group row">
+                    <input name="korisnickoIme" type="text" class="form-control col-3" placeholder="Korisnicko ime" />
+                    <button type="submit" class="btn btn-primary col-2" style="margin-left:5px">Filtriraj</button>
+                </div>
+            </form>
+            <div class="card-body p-0">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th style="width: 10px">Ime</th>
+                            <th>Prezime</th>
+                            <th>Korisničko ime</th>
+                            <th>Akcija</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in @Model)
+                        {
+                            <tr>
+                                <td>@item.Ime</td>
+                                <td>@item.Prezime</td>
+                                <td>@item.KorisnickoIme</td>
+                                <td><a asp-action="DetaljiKorisnika" asp-route-id="@item.KorisnikId" class="btn btn-primary">Profil korisnika</a></td>
+
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

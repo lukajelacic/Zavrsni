@@ -1,0 +1,31 @@
+﻿@model eMusicStudio.Web.ViewModels.Klijent.ClientAppointmentViewModel
+@{
+    ViewData["Title"] = "Rezervisi termin";
+    Layout = "~/Views/Shared/_KlijentLayout.cshtml";
+}
+
+<div class="content-wrapper">
+    <div class="content-header">
+        <div class="container-fluid">
+            <form asp-action="RezervisiTermin" method="post">
+                <div class="card-body">
+                    <input asp-for="@Model.TerminId" hidden />
+                    <div class="form-group">
+                        <label asp-for="@Model.Datum"></label>
+                        <input asp-for="@Model.Datum" class="form-control" readonly />
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="@Model.VrijemeOd"></label>
+                        <input asp-for="@Model.VrijemeOd" class="form-control" readonly />
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="@Model.VrijemeDo"></label>
+                        <input asp-for="@Model.VrijemeDo" class="form-control" readonly />
+                    </div>
+                    <a asp-action="ListaTermina" class="btn btn-default">Nazad</a>
+                    <button type="submit" class="btn btn-primary float-right">Rezervisi termin</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    </div>

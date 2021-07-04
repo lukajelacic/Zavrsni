@@ -1,0 +1,72 @@
+﻿@model eMusicStudio.Web.ViewModels.Klijent.CreateClientViewModel
+@{
+    ViewData["Title"] = "Kreiraj klijenta";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+
+}
+<div class="content-wrapper">
+    <div class="content-header">
+        <div class="container-fluid">
+            <form asp-action="KreirajKlijenta" method="post" enctype="multipart/form-data">
+                <div class="card-body">
+                    <div class="form-group">
+                        <label asp-for="Ime"></label>
+                        <input asp-for="Ime" class="form-control" id="exampleInputEmail1" placeholder="Unesite ime">
+                        <span asp-validation-for="Ime" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Prezime"></label>
+                        <input asp-for="Prezime" class="form-control" id="exampleInputEmail1" placeholder="Unesite prezime">
+                        <span asp-validation-for="Prezime" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Email"></label>
+                        <input asp-for="Email" type="email" class="form-control" id="exampleInputEmail1" placeholder="Unesite email">
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Telefon"></label>
+                        <input asp-for="Telefon" type="tel" class="form-control" id="exampleInputEmail1" placeholder="Unesite telefon">
+                        <span asp-validation-for="Telefon" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="KorisnickoIme"></label>
+                        <input asp-for="KorisnickoIme" class="form-control" id="exampleInputEmail1" placeholder="Unesite korisničko ime">
+                        <span asp-validation-for="KorisnickoIme" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Gradovi"></label>
+                        <select asp-for="GradId" asp-items="@Model.Gradovi" class="form-control"></select>
+                        <span asp-validation-for="GradId" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputFile">Slika</label>
+                        <div class="input-group">
+                            <div class="custom-file">
+                                <input asp-for="Slika" class="custom-file-input" id="exampleInputFile">
+                                <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Password"></label>
+                        <input asp-for="Password" type="password" class="form-control" id="exampleInputEmail1" placeholder="Unesite lozinku">
+                        <span asp-validation-for="@Model.Password" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="PasswordConfirmation"></label>
+                        <input asp-for="PasswordConfirmation" type="password" class="form-control" id="exampleInputEmail1" placeholder="Ponovo unesite lozinku">
+                        <span asp-validation-for="@Model.PasswordConfirmation" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="card-footer">
+                    @*<button type="reset" class="btn btn-default">Nazad</button>*@
+                    <a asp-action="ListaKlijenata" class="btn btn-default">Nazad</a>
+                    <button type="submit" class="btn btn-primary float-right">Dodaj</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    </div>

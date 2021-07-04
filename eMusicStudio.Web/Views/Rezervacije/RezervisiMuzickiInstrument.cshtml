@@ -1,0 +1,40 @@
+﻿@model eMusicStudio.Web.ViewModels.Rezervacije.RezervacijaViewModel
+@{
+    ViewData["Title"] = "Rezervisi muzicki instrument";
+    Layout = "~/Views/Shared/_KlijentLayout.cshtml";
+
+}
+
+<div class="content-wrapper">
+    <div class="content-header">
+        <div class="container-fluid">
+            <form asp-action="RezervisiMuzickiInstrument" method="post">
+                <div class="card-body">
+                    <input asp-for="@Model.MuzickaOprema.MuzickaOpremaId" hidden />
+                    <div class="form-group">
+                        <label asp-for="@Model.MuzickaOprema.Slika"></label>
+                        <input asp-for="@Model.MuzickaOprema.Slika" readonly class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="@Model.MuzickaOprema.Naziv"></label>
+                        <input asp-for="@Model.MuzickaOprema.Naziv" readonly class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="@Model.MuzickaOprema.Cijena"></label>
+                        <input asp-for="@Model.MuzickaOprema.Cijena" readonly class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="@Model.MuzickaOprema.NaStanju"></label>
+                        <input asp-for="@Model.MuzickaOprema.NaStanju" readonly class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="@Model.Kolicina"></label>
+                        <input asp-for="@Model.Kolicina" type="number" min="1" max="@Model.MuzickaOprema.NaStanju" class="form-control" />
+                    </div>
+                    <a asp-action="ListaInstrumenata" asp-controller="MuzickaOprema" class="btn btn-default">Nazad</a>
+                    <button type="submit" class="btn btn-primary float-right">Rezervisi instrument</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    </div>

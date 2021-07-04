@@ -1,0 +1,43 @@
+﻿@model List<eMusicStudio.Web.ViewModels.Rezervacije.ClientsReservationsViewModel>
+@{
+    ViewData["Title"] = "Lista rezervacija";
+    if (GlobalUser.prijavljeniKorisnik != null)
+    {
+        Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_KlijentLayout.cshtml";
+
+    }
+}
+<div class="content-wrapper">
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="card-body p-0">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Broj</th>
+                            <th>Datum</th>
+                            <th>Cijena</th>
+                            <th>Akcija</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in @Model)
+                        {
+                            <tr>
+                                <td>@item.BrojRezervacije</td>
+                                <td>@item.DatumRezervacije.ToShortDateString()</td>
+                                <td>@item.Cijena KM</td>
+                                <td><a asp-action="DetaljiRezervacije" asp-route-id="@item.RezervacijaId" class="btn btn-primary ">Detalji</a></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    </div>
+

@@ -1,0 +1,51 @@
+﻿@model List<eMusicStudio.Web.ViewModels.Klijent.ClientListViewModel>
+@{
+    ViewData["Title"] = "Lista klijenata";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    var porukaDodavanje = (string)TempData["porukaDodavanje"];
+
+}
+
+<div class="content-wrapper">
+    <div class="content-header">
+        <div class="container-fluid">
+            @if (porukaDodavanje != null)
+            {
+                <div class="alert alert-success" id="poruka" role="alert">
+                    @porukaDodavanje
+                </div>
+            }
+            @*<h1>Lista klijenata</h1>*@
+            <form asp-action="ListaKlijenata" method="post">
+                @*<label>Korisničko ime:</label>*@
+                <div class="form-group row">
+                    <input name="korisnickoIme" type="text" class="form-control col-3" placeholder="Korisnicko ime" />
+                    <button type="submit" class="btn btn-primary col-2 float-right" style="margin-left:5px">Filtriraj</button>
+                </div>
+            </form>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Ime</th>
+                        <th>Prezime</th>
+                        <th>Korisničko ime</th>
+                        <th>Akcija</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in @Model)
+                    {
+                        <tr>
+                            <td>@item.Ime</td>
+                            <td>@item.Prezime</td>
+                            <td>@item.KorisnickoIme</td>
+                            <td><a asp-action="DetaljiKlijenta" asp-route-id="@item.KlijentId" class="btn btn-primary ">Profil korisnika</a></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <br />
+            <a asp-action="Index" asp-controller="Report" class="btn btn-primary float-right" >Izvještaj</a>
+        </div>
+    </div>
+    </div>

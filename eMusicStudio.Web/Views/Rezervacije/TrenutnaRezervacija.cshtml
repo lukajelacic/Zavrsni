@@ -1,0 +1,47 @@
+﻿@model List<eMusicStudio.Web.ViewModels.Rezervacije.RezervacijaViewModel>
+@{
+    ViewData["Title"] = "Trenutna rezervacija";
+    Layout = "~/Views/Shared/_KlijentLayout.cshtml";
+
+}
+<div class="content-wrapper">
+    <div class="content-header">
+        <div class="container-fluid">
+            <h1>Trenutna rezervacija</h1>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Naziv instrumenta</th>
+                        <th>Cijena</th>
+                        <th>Količina</th>
+                        <th>Akcija</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <th>@item.MuzickaOprema.Naziv</th>
+                            <th>@item.MuzickaOprema.Cijena</th>
+                            <th>@item.Kolicina</th>
+                            <th>
+                                <a asp-action="PovecajKolicinu" asp-route-id="@item.MuzickaOprema.MuzickaOpremaId" class="btn btn-primary">+</a>
+                                <a asp-action="SmanjiKolicinu" asp-route-id="@item.MuzickaOprema.MuzickaOpremaId" class="btn btn-warning">-</a>
+                                <a asp-action="IzbrisiInstrument" asp-route-id="@item.MuzickaOprema.MuzickaOpremaId" class="btn btn-danger">x</a>
+
+                            </th>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            @if (Model.Count > 0)
+            {
+                <form asp-action="ZakljuciRezervaciju" method="post">
+                    <label>Izaberite datum za koju rezervišete muzičku opremu:</label>
+                    <input type="date" min="@DateTime.Today.ToString("yyyy-MM-dd")" name="Datum" />
+                    <button type="submit" class="btn btn-primary">Zaključi rezervaciju</button>
+                </form>
+            }
+        </div>
+    </div>
+    </div>

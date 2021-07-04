@@ -1,0 +1,46 @@
+﻿@model eMusicStudio.Web.ViewModels.Termini.ListOfAllAppointmentsViewModel
+@{
+    ViewData["Title"] = "ListaTermina";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    var termin = (string)TempData["termin"];
+}
+<div class="content-wrapper">
+    <div class="content-header">
+        <div class="container-fluid">
+            @if (termin != null)
+            {
+                <div class="alert alert-success" id="poruka" role="alert">
+                    @termin
+                </div>
+            }
+            <h1>Slobodni termini</h1>
+            <div class="card-body p-0">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Datum termina</th>
+                            <th>Početak</th>
+                            <th>Kraj</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in @Model.Lista)
+                        {
+                            <tr>
+                                <td>@item.Datum.Value.ToShortDateString()</td>
+                                <td>@item.VrijemeOd.Value.ToString(@"hh\:mm")</td>
+                                <td>@item.VrijemeDo.Value.ToString(@"hh\:mm")</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <br />
+            @if (Model.IsAdmin)
+            {
+                <a asp-action="DodajTermin" class="btn btn-primary float-right">Dodaj novi termin</a>
+            }
+        </div>
+      
+    </div>
+</div>

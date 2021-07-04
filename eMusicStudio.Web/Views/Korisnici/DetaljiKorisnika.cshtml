@@ -1,0 +1,36 @@
+﻿@model eMusicStudio.Web.ViewModels.Admin.UserDetailViewModel
+@{
+    ViewData["Title"] = "Detalji radnika";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+
+}
+
+<div class="content-wrapper">
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card card-primary">
+                        <div class="card-body box-profile">
+                            <h3 class="profile-username text-center">@Model.Ime @Model.Prezime</h3>
+                            <p class="text-muted text-center">@Model.Uloga</p>
+                            <br />
+                            <br />
+                            <ul class="list-group list-group-unbordered mb-3">
+                                <li class="list-group-item">
+                                    <b>Email</b> <a class="float-right">@Model.Email </a>
+                                </li>
+                                <li class="list-group-item">
+                                    <b>Telefon</b> <a class="float-right">@Model.Telefon</a>
+                                </li>
+                            </ul>
+                            <a asp-action="ListaKorisnika" class="btn btn-primary">Nazad na listu</a>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    </div>

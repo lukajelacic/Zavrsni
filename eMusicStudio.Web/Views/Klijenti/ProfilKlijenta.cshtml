@@ -1,0 +1,79 @@
+﻿@model eMusicStudio.Web.ViewModels.Klijent.ClientDetailViewModel
+@{
+    ViewData["Title"] = "Profil klijenta";
+    Layout = "~/Views/Shared/_KlijentLayout.cshtml";
+    var email = (string)TempData["emailPoruka"];
+    var korisnickoIme = (string)TempData["korisnickoIme"];
+}
+
+
+<div class="content-wrapper">
+    <div class="content-header">
+        <div class="container-fluid">
+            @if (email != null)
+            {
+                <div class="alert alert-success" id="poruka" role="alert">
+                    @email
+                </div>
+            }
+            @if (korisnickoIme != null)
+            {
+                <div class="alert alert-success" id="poruka" role="alert">
+                    @korisnickoIme
+                </div>
+            }
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card card-primary">
+                        <div class="card-body box-profile">
+                            <div class="text-center">
+                                <img src="~/images/@Model.Slika" class="profile-user-img img-fluid img-circle" />
+                            </div>
+                            <br />
+                            <br />
+                            <ul class="list-group list-group-unbordered mb-3">
+                                <li class="list-group-item">
+                                    <b>Ime i prezime</b> <a class="float-right">@Model.Ime @Model.Prezime</a>
+                                </li>
+                                <li class="list-group-item">
+                                    <b>Korisnicko ime</b> <a class="float-right">@Model.KorisnickoIme</a>
+                                </li>
+
+                            </ul>
+                            <a asp-action="PromjeniKorisnickoIme" class="btn btn-primary btn-block">Promjeni korisnicko ime</a>
+                            <a asp-action="PromjeniLozinku" class="btn btn-primary btn-block">Promjeni lozinku</a>
+                            <a asp-action="PromjeniEmail" class="btn btn-primary btn-block">Promjeni email</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <h3 class="card-title">Osnovne informacije</h3>
+                        </div>
+                        <div class="card-body">
+                            <ul class="list-group list-group-unbordered mb-3">
+                                <li class="list-group-item">
+                                    <b>Email</b> <a class="float-right">@Model.Email</a>
+                                </li>
+                                <li class="list-group-item">
+                                    <b>Telefon</b> <a class="float-right">@Model.Telefon</a>
+                                </li>
+                                <li class="list-group-item">
+                                    <b>Grad</b> <a class="float-right">@Model.Grad</a>
+                                </li>
+                                <li class="list-group-item">
+                                    <b>Broj rezervacija</b> <a class="float-right">@Model.BrojRezervacija</a>
+                                </li>
+                                <li class="list-group-item">
+                                    <b>Broj termina</b> <a class="float-right">@Model.BrojTermina</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    </div>
