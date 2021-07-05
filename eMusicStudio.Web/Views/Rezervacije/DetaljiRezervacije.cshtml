@@ -17,6 +17,7 @@
         <div class="container-fluid">
             <h1>Broj rezervacije:   @Model.BrojRezervacije</h1>
             <h3>Cijena rezervacije:   @Model.Cijena KM</h3>
+            <h3>Datum rezervacije: @Model.DatumRezervacije.ToShortDateString()</h3>
             @if (rez != null)
             {
                 <div class="alert alert-success" id="poruka">

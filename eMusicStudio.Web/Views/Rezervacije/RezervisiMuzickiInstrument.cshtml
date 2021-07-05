@@ -11,10 +11,10 @@
             <form asp-action="RezervisiMuzickiInstrument" method="post">
                 <div class="card-body">
                     <input asp-for="@Model.MuzickaOprema.MuzickaOpremaId" hidden />
-                    <div class="form-group">
+                    @*<div class="form-group">
                         <label asp-for="@Model.MuzickaOprema.Slika"></label>
                         <input asp-for="@Model.MuzickaOprema.Slika" readonly class="form-control" />
-                    </div>
+                    </div>*@
                     <div class="form-group">
                         <label asp-for="@Model.MuzickaOprema.Naziv"></label>
                         <input asp-for="@Model.MuzickaOprema.Naziv" readonly class="form-control" />

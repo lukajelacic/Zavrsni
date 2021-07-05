@@ -79,7 +79,6 @@ namespace eMusicStudio.Web.Controllers
         [HttpPost]
         public IActionResult KreirajKlijenta(ViewModels.Klijent.CreateClientViewModel model)
         {
-            //srediti dodavanje sllike
             var klijent = new KlijentiInsertRequest();
             string uniqueFileName = Helper.Image.Upload(model.Slika, _webHostEnvironment);
             if (ModelState.IsValid)
